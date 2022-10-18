@@ -38,7 +38,7 @@ Today, we're asking for donations for Environmental Working Group
 
 ## Instructor: Dina Kazakevich 
 
-I'm a Senior QA Analyst at Adalo and a former mentor at Practicum School of Software Testing by Yandex where I taught over 100 aspiring software testers. I've attended the BBST Foundations and the Instructors courses by AST as well as courses by James Bach and Michael Bolton. I'm passionate about remote work and slow traveling and I run an international community of remote tech professionals [Remote Ever After](https://t.me/remoteeverafter) (currently in Telegram but migrating to Reddit). I've been living out of my suitecase and traveling the world for over 5 years now. 
+I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor at [Practicum by Yandex](https://practicum.com/) where I taught over 100 aspiring software testers. I've attended the BBST Foundations and the Instructors courses by AST as well as courses by James Bach and Michael Bolton. I'm passionate about remote work and slow traveling and I run an international community of remote tech professionals [Remote Ever After](https://t.me/remoteeverafter) (currently in Telegram but migrating to Reddit). I've been living out of my suitecase and traveling the world for over 5 years now. 
 
 Twitter: https://twitter.com/dinakazakevich
 LinkedIn: https://www.linkedin.com/in/dinakazakevich/
