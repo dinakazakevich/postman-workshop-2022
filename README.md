@@ -20,10 +20,12 @@ Goal is to learn to test REST APIs with Postman collections, learn to run collec
 
 
 ## 🔧 Technologies you will use
-- Postman https://www.postman.com/ 
 - Javascript 
+- Postman https://www.postman.com/ 
 - Newman https://www.npmjs.com/package/newman
 - Jenkins (if we have enough time) https://www.jenkins.io/
+- Adalo as an API service https://www.adalo.com/ 
+- Airtable as an API service https://airtable.com/
 
 
 -----
@@ -50,11 +52,35 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 ## ⚙️ Setup
 
 1. Install Postman https://www.postman.com/ 
-2. Check if you have Node.js and npm installed by checking their versions: `node -v` AND `npm -v`, install them if needed 
-3. Install Newman `npm i newman`
-4. 
+2. Sign up for a free Adalo account https://www.adalo.com/?via=dina
+3. Logging into your Adalo account
+4. Follow the link and clone this [sample Adalo app](https://remoteeverafter.adalo.com/applicants) — we will be using its collections
+5. Enable Free Integrations Trial in Adalo Editor: Settings > App Access > Start Trial 
+6. Generate API Key
 
 
 ## Creating Postman API requests
 
+1. Create a simple GET request for the Adalo app Applications collection 
+      - You will need to set up authorization
+2. Create a simple POST request for the Adalo app Applications collection, create a new application 
+      - Simple: Set Full Name to static values 
+      - Hard 💪: Set the application.id to the environment applicationId
+      - Hard 💪: Add dynamic variables for First Name, Last Name -- see [Postman documenation](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/) for details 
+4. Create a simple PUT request to update the status of the application 
+5. Create a simple DELETE request to delete the application you created in step #2
+6. Add automatic checks to each request 
+      - Check the response status code 200 on each of them
+      - Only for GET request: Check that the `applicationId` created with POST request is actually present in the response of the GET request. 
+      - Hard 💪: make every request to be independent from one another. Hint: use pre-request scripts and tests to create and cleanup data
+7. Run the collection in Postman Collection Runner 
 
+
+
+## Running collections in command line using Newman collection runner 
+1. 
+
+
+
+You might need to install/update Node.js and npm
+- Check if you have Node.js and npm installed by checking their versions: `node -v` AND `npm -v`, install them if needed 
