@@ -126,13 +126,22 @@ Note: You might need to install/update Node.js and npm
 ```sh
 $ sudo chown -R $(whoami) /path/to/restricted/directory
 ```
-3. Install Node.js and Newman in Jenkins:
+3. Install Node.js and Newman in Jenkins: more info here https://learning.postman.com/docs/running-collections/using-newman-cli/continuous-integration/
       - Go to your Jenkins server (it's at http://localhost:8080 by default if you are running it locally) and sign in.
       - Go to Manage Jenkins > Manage Plugins and install the NodeJS plugin.
       - Go to Manage Jenkins > Global Tool Configuration and under NodeJS, select Add NodeJS.
       - Enter a name for the Node.js installation.
       - In Global npm packages to install, enter newman.
       - Select Save.
+4. Setup Jenkins
+	- With Jenkins running, go to http://localhost:8080 and sign in.
+	- On the Dashboard page, select New Item on the left sidebar to create a new job.
+	- Select a Freestyle project from the options. Name your project, and select OK.
+	- In General > Build, add a build step in the project, and choose Execute Shell. The build step executes a shell command. Enter a shell command to run, such as newman run ~/Desktop/jenkins_demo_postman_collection.json.
+	- In Build Environment > Build Environment, select Provide Node & npm bin/ folder to PATH and choose the NodeJS install you configured with Newman.
+	- Select Save to finish creating the project.
+4. Run the Build 
+
  
  
  
