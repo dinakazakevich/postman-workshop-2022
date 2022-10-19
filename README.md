@@ -59,6 +59,21 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 6. Generate API Key
 
 
+## ✨ Bonus task: Set up a local API service with Express.js 
+1. Create an express js app https://expressjs.com/en/starter/generator.html
+	1. Create a dedicated directory and run this in the terminal 
+	2. ```npx express-generator ```
+2. Run the expressjs-sample project locally, look through the routes/users.js
+	1. ```DEBUG=expressjs:* npm start```
+	2. Access it at http://localhost:3000/ 
+4. Replace you routes/user.js with the file below 
+5. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
+6. Start the express-sample service locally by 
+7. Test with Postman, specifically the POST request
+8. The update the POST endpoint to return result: `New user aded` instead of `New user created`
+9. Restart the service and run POST request again to confirm ti was updated. 
+
+
 ## Creating Postman API requests
 
 1. Create a simple GET request for the Adalo app Applications collection 
@@ -146,20 +161,6 @@ $ sudo chown -R $(whoami) /path/to/restricted/directory
 9. Run the collection via command line using Newman 
 10. Run the collection via command line using Newman and generate and html report 
 
-
-### ✨ Bonus task: Set up a local API service with Express.js 
-1. Create an express js app https://expressjs.com/en/starter/generator.html
-	1. Create a dedicated directory and run this in the terminal 
-	2. ```npx express-generator ```
-2. Run the expressjs-sample project locally, look through the routes/users.js
-	1. ```DEBUG=expressjs:* npm start```
-	2. Access it at http://localhost:3000/ 
-4. Replace you routes/user.js with the file below 
-5. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
-6. Start the express-sample service locally by 
-7. Test with Postman, specifically the POST request
-8. The update the POST endpoint to return result: `New user aded` instead of `New user created`
-9. Restart the service and run POST request again to confirm ti was updated. 
 
 
 ### Additional reading 
