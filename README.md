@@ -90,7 +90,7 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
       - Hard 💪: make every request to be independent from one another. Hint: use pre-request scripts and tests to create and cleanup data
 6. Run the collection in Postman Collection Runner — [Postman documentation](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
 7. Set up a Monitor for the Collection to run every hour — [Postman documentation](https://learning.postman.com/docs/monitoring-your-api/setting-up-monitor/)
-8. There is a sample postman collection with Adalo public API set up in `./postman-collections/adalo-postman-collection`
+8. There is a sample postman collection with Adalo public API set up in [./postman-collections/adalo-postman-collection](https://github.com/dinakazakevich/postman-workshop-2022/tree/main/postman-collections/adalo-postman-collection)
 
 ## Running collections in command line using Newman collection runner 
 1. We can also run the Postman Collection in the command line using Newman Open Source Collection Runner 
@@ -169,7 +169,7 @@ $ sudo chown -R $(whoami) /path/to/restricted/directory
 8. Set up a Monitor to run every hour 
 9. Run the collection via command line using Newman 
 10. Run the collection via command line using Newman and generate and html report 
-11. Answers to the above are in a sample collection in `./postman-collections/airtable-postman-collection`
+11. Answers to the above are in a sample collection in [./postman-collections/airtable-postman-collection](https://github.com/dinakazakevich/postman-workshop-2022/tree/main/postman-collections/airtable-postman-collection)
 
 
 
