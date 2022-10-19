@@ -98,6 +98,7 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 6. Run the collection in Postman Collection Runner — [Postman documentation](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
 7. Set up a Monitor for the Collection to run every hour — [Postman documentation](https://learning.postman.com/docs/monitoring-your-api/setting-up-monitor/)
 8. There is a sample postman collection with Adalo public API set up in [./postman-collections/adalo-postman-collection](https://github.com/dinakazakevich/postman-workshop-2022/tree/main/postman-collections/adalo-postman-collection)
+	IMPORTANT: Please use your own Adalo app tokens and Authentication key to run this locally. 
 
 ## Running collections in command line using Newman collection runner 
 1. We can also run the Postman Collection in the command line using Newman Open Source Collection Runner 
@@ -177,6 +178,7 @@ $ sudo chown -R $(whoami) /path/to/restricted/directory
 9. Run the collection via command line using Newman 
 10. Run the collection via command line using Newman and generate and html report 
 11. Answers to the above are in a sample collection in [./postman-collections/airtable-postman-collection](https://github.com/dinakazakevich/postman-workshop-2022/tree/main/postman-collections/airtable-postman-collection)
+	IMPORTANT: Please use your own Airtable app tokens and Authentication key to run this locally. 
 
 
 
