@@ -82,15 +82,15 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
       - Simple ☑️: Set Full Name to static values 
       - Simple ☑️: Set the application.id to the environment applicationId
       - Hard 💪: Add dynamic variables for First Name, Last Name -- see [Postman documenation](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/) for details 
-4. Create a simple PUT request to update the status of the application 
-5. Create a simple DELETE request to delete the application you created in step #2
-6. Add automatic checks to each request [Postman documentation](https://learning.postman.com/docs/writing-scripts/test-scripts/)
+3. Create a simple PUT request to update the status of the application 
+4. Create a simple DELETE request to delete the application you created in step #2
+5. Add automatic checks to each request [Postman documentation](https://learning.postman.com/docs/writing-scripts/test-scripts/)
       - Simple ☑️: Check the response status code 200 on each of them
       - Hard 💪: Only for GET request, Check that the `applicationId` created with POST request is actually present in the response of the GET request. 
       - Hard 💪: make every request to be independent from one another. Hint: use pre-request scripts and tests to create and cleanup data
-7. Run the collection in Postman Collection Runner — [Postman documentation](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
-8. Set up a Monitor for the Collection to run every hour — [Postman documentation](https://learning.postman.com/docs/monitoring-your-api/setting-up-monitor/)
-
+6. Run the collection in Postman Collection Runner — [Postman documentation](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
+7. Set up a Monitor for the Collection to run every hour — [Postman documentation](https://learning.postman.com/docs/monitoring-your-api/setting-up-monitor/)
+8. There is a sample postman collection with Adalo public API set up in `./postman-collections/adalo-postman-collection`
 
 ## Running collections in command line using Newman collection runner 
 1. We can also run the Postman Collection in the command line using Newman Open Source Collection Runner 
@@ -169,6 +169,7 @@ $ sudo chown -R $(whoami) /path/to/restricted/directory
 8. Set up a Monitor to run every hour 
 9. Run the collection via command line using Newman 
 10. Run the collection via command line using Newman and generate and html report 
+11. Answers to the above are in a sample collection in `./postman-collections/airtable-postman-collection`
 
 
 

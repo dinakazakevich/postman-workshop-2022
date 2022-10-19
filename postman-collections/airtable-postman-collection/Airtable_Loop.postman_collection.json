@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "316cbc69-51b5-4392-be41-b158b8055e71",
+		"name": "Airtable_Loop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4972045"
+	},
+	"item": [
+		{
+			"name": "Create an applicant record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check response status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Set Environment variable applicantId to the id of the user created",
+							"const responseJson = pm.response.json();",
+							"postman.setEnvironmentVariable(\"applicantId\", responseJson.records[0].id);",
+							"console.log(\"applicantId is set to\", responseJson.records[0].id);",
+							"",
+							"// Test that the user we created was returned in the response",
+							"pm.test(\"The user created exists in the response\", function () {",
+							"    const requestJson = JSON.parse(pm.request.body);",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.records[0].fields.Name).to.eql(requestJson.records[0].fields.Name);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"/**",
+							"// Send DELETE request to delete the user you have just created with the POSR request",
+							"const appId = pm.environment.get(\"appId\");",
+							"const tableId = pm.environment.get(\"tableId\");",
+							"const applicantId =  pm.environment.get(\"applicantId\");",
+							"pm.sendRequest({",
+							"    url: `https://api.airtable.com/v0/${appId}/${tableId}/${applicantId}`,",
+							"    method: 'DELETE',",
+							"    header: {",
+							"        'content-type': 'application/json',",
+							"        'Authorization': \"Bearer \" + pm.environment.get(\"auth-token\")",
+							"    },",
+							"",
+							"}, function (err, res) {",
+							"    console.log(res.json());",
+							"});",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"records\": [\n    {\n      \"fields\": {\n        \"Name\": \"{{$randomFirstName}} {{$randomLastName}}\",\n        \"Email address\": \"{{$randomEmail}}\",\n        \"Role\": \"Software Tester\",\n        \"Recruiter\": {\n          \"id\": \"usrL8fU8h1BCzYCvu\",\n          \"email\": \"9pg0w77og@mozmail.com\",\n          \"name\": \"Christopher Robin\"\n        },\n        \"Stage\": \"Interviewing\",\n        \"Resume URL\": \"{{$randomUrl}}/software-tester-resume\"\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.airtable.com/v0/{{appId}}/{{tableId}}/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"airtable",
+						"com"
+					],
+					"path": [
+						"v0",
+						"{{appId}}",
+						"{{tableId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all applicants",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains new applicant created\", () => {",
+							"    const applicant = pm.response.json().records.find(applicant => applicant.id === pm.environment.get('applicantId'));",
+							"    pm.expect(applicant.id).to.equal(pm.environment.get('applicantId'));",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"/**",
+							"// Send DELETE request to delete the user you have just created with the POSR request",
+							"const appId = pm.environment.get(\"appId\");",
+							"const tableId = pm.environment.get(\"tableId\");",
+							"const applicantId =  pm.environment.get(\"applicantId\");",
+							"pm.sendRequest({",
+							"    url: `https://api.airtable.com/v0/${appId}/${tableId}/${applicantId}`,",
+							"    method: 'DELETE',",
+							"    header: {",
+							"        'content-type': 'application/json',",
+							"        'Authorization': \"Bearer \" + pm.environment.get(\"auth-token\")",
+							"    },",
+							"",
+							"}, function (err, res) {",
+							"    console.log(res.json());",
+							"    const responseJson = res.json();",
+							"    pm.test(`User with id ${responseJson.id} was deleted`, function () {",
+							"        pm.response.to.have.status(200);",
+							"    });",
+							"});",
+							"",
+							" */"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/** ",
+							"",
+							"// Send POST request to create a new user ",
+							"const appId = pm.environment.get(\"appId\");",
+							"const tableId = pm.environment.get(\"tableId\");",
+							"const firstName = pm.variables.replaceIn('{{$randomFirstName}}');",
+							"const lastName = pm.variables.replaceIn('{{$randomLastName}}');",
+							"const email = pm.variables.replaceIn('{{$randomEmail}}');",
+							"console.log(firstName);",
+							"pm.sendRequest({",
+							"    url: `https://api.airtable.com/v0/${appId}/${tableId}`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json',",
+							"        'Authorization': \"Bearer \" + pm.environment.get(\"auth-token\")",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({\"records\":[{\"fields\":{\"Name\":`${firstName} ${lastName}`,\"Email address\":`${email}`,\"Role\":\"Software Tester\",\"Recruiter\":{\"id\":\"usrL8fU8h1BCzYCvu\",\"email\":\"9pg0w77og@mozmail.com\",\"name\":\"Christopher Robin\"},\"Stage\":\"Interviewing\",\"Resume URL\":\"https://yolanda.info/software-tester-resume\"}}]})",
+							"",
+							"    }",
+							"",
+							"}, function (err, res) {",
+							"    console.log(res.json());",
+							"    const responseJson = res.json();",
+							"    postman.setEnvironmentVariable(\"applicantId\", responseJson.records[0].id);",
+							"    console.log(\"applicantId is set to\", responseJson.records[0].id);",
+							"});",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.airtable.com/v0/{{appId}}/{{tableId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"airtable",
+						"com"
+					],
+					"path": [
+						"v0",
+						"{{appId}}",
+						"{{tableId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete One Applicant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/**",
+							"",
+							"// Send POST request to create a new user ",
+							"const appId = pm.environment.get(\"appId\");",
+							"const tableId = pm.environment.get(\"tableId\");",
+							"const firstName = pm.variables.replaceIn('{{$randomFirstName}}');",
+							"const lastName = pm.variables.replaceIn('{{$randomLastName}}');",
+							"const email = pm.variables.replaceIn('{{$randomEmail}}');",
+							"console.log(firstName);",
+							"pm.sendRequest({",
+							"    url: `https://api.airtable.com/v0/${appId}/${tableId}`,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json',",
+							"        'Authorization': \"Bearer \" + pm.environment.get(\"auth-token\")",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({\"records\":[{\"fields\":{\"Name\":`${firstName} ${lastName}`,\"Email address\":`${email}`,\"Role\":\"Software Tester\",\"Recruiter\":{\"id\":\"usrL8fU8h1BCzYCvu\",\"email\":\"9pg0w77og@mozmail.com\",\"name\":\"Christopher Robin\"},\"Stage\":\"Interviewing\",\"Resume URL\":\"https://yolanda.info/software-tester-resume\"}}]})",
+							"",
+							"    }",
+							"",
+							"}, function (err, res) {",
+							"    console.log(res.json());",
+							"    const responseJson = res.json();",
+							"    postman.setEnvironmentVariable(\"applicantId\", responseJson.records[0].id);",
+							"    console.log(\"applicantId is set to\", responseJson.records[0].id);",
+							"});",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.airtable.com/v0/{{appId}}/{{tableId}}/{{applicantId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"airtable",
+						"com"
+					],
+					"path": [
+						"v0",
+						"{{appId}}",
+						"{{tableId}}",
+						"{{applicantId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "appId",
+			"value": "appR0wETDJnIUX0iz",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "table",
+			"value": "Applicants",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
