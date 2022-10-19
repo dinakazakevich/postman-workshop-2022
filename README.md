@@ -62,28 +62,105 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 ## Creating Postman API requests
 
 1. Create a simple GET request for the Adalo app Applications collection 
-      - You will need to set up authorization
+      - Hint: You will need to set up authorization
 2. Create a simple POST request for the Adalo app Applications collection, create a new application 
-      - Simple: Set Full Name to static values 
-      - Simple: Set the application.id to the environment applicationId
+      - Simple ☑️: Set Full Name to static values 
+      - Simple ☑️: Set the application.id to the environment applicationId
       - Hard 💪: Add dynamic variables for First Name, Last Name -- see [Postman documenation](https://learning.postman.com/docs/writing-scripts/script-references/variables-list/) for details 
 4. Create a simple PUT request to update the status of the application 
 5. Create a simple DELETE request to delete the application you created in step #2
-6. Add automatic checks to each request 
-      - Simple: Check the response status code 200 on each of them
+6. Add automatic checks to each request [Postman documentation](https://learning.postman.com/docs/writing-scripts/test-scripts/)
+      - Simple ☑️: Check the response status code 200 on each of them
       - Hard 💪: Only for GET request, Check that the `applicationId` created with POST request is actually present in the response of the GET request. 
       - Hard 💪: make every request to be independent from one another. Hint: use pre-request scripts and tests to create and cleanup data
-7. Run the collection in Postman Collection Runner
-
+7. Run the collection in Postman Collection Runner — [Postman documentation](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)
+8. Set up a Monitor for the Collection to run every hour — [Postman documentation](https://learning.postman.com/docs/monitoring-your-api/setting-up-monitor/)
 
 
 ## Running collections in command line using Newman collection runner 
-1. We can also run Postman Collection in command line using Newman 
-2. Install 
-3. For this you will need to install newman
-4. You can also use postman CLI, I haven't tried working with Postman CLI 
+1. We can also run the Postman Collection in the command line using Newman Open Source Collection Runner 
+2. Install Newman 
+```sh
+$ npm i newman -g
+```
+3. Export Collection and Environment and save them locally 
+4. Run the collection 
+```sh
+$ newman run PostmanCollection.json -e environment.json
+```
+
+## Generating HTML reports
+1. Install htmlextra https://www.npmjs.com/package/newman-reporter-htmlextra
+```sh
+$ npm i newman-reporter-htmlextra
+```
+2. Run a collection with newman and generate an html report 
+```sh
+$ newman run collection.json -e environment.json -r htmlextra
+```
 
 
-
-You might need to install/update Node.js and npm
+Note: You might need to install/update Node.js and npm
 - Check if you have Node.js and npm installed by checking their versions: `node -v` AND `npm -v`, install them if needed 
+- Installation steps are here https://nodejs.org/en/download/package-manager/
+
+
+## 🛣️ Jenkins Pipeline
+1. Install Jenkins https://www.jenkins.io/doc/book/installing/
+2. Troubleshoot `Permissions denied` error by running 
+```sh
+$ sudo chown -R $(whoami) /path/to/restricted/directory
+```
+3. Install Node.js and Newman in Jenkins:
+      - Go to your Jenkins server (it's at http://localhost:8080 by default if you are running it locally) and sign in.
+      - Go to Manage Jenkins > Manage Plugins and install the NodeJS plugin.
+      - Go to Manage Jenkins > Global Tool Configuration and under NodeJS, select Add NodeJS.
+      - Enter a name for the Node.js installation.
+      - In Global npm packages to install, enter newman.
+      - Select Save.
+ 
+ 
+ 
+# Additional task — Airtable API 
+1. Repeat teh exercise for Airtable Database API 
+2. Sign up for a free Airtable account 
+3. Clone this app to your account https://airtable.com/shrECwvJjBJzTgiQs/tblymCw8pWMTvUccW/viwtmKb10IVAhPY5F
+4. Generate API key in https://airtable.com/account 
+
+
+### Tasks for Airtable
+1. Created simple GET/POST/DELETE reuests 
+2. First loop them to clean after the run 
+3. Second, make them run an stnadalone tests that create and delete data after themselves. 
+4. GET: 
+      - pre-scripts: (1) create a new record, (2) save the recordId to an environment variable
+      - tests: (1) response status 200, (2) response contains new applicant created, (3) delete the record created
+5. POST: 
+      - pre-scripts: n/a
+      - tests: (1) check response status code is 200, (2) Set Environment variable applicantId to the id of the user created, (3) Test that the user we created was returned in the response, (4) Send DELETE request to delete the user you have just created
+6. DELETE 
+      - pre-scripts: (1) Send POST request to create a new user and save the id of the applicant to an environment variable 
+      - tests: (1) Status code is 200
+7. Run the Collection manually 
+8. Set up a Monitor to run every hour 
+9. Run the collection via command line using Newman 
+10. Run the collection via command line using Newman and generate and html report 
+
+
+### ✨ Bonus task: Set up a local API service with Express.js 
+1. Create an express js app https://expressjs.com/en/starter/generator.html
+	1. Create a dedicated directory and run this in the terminal 
+	2. ```npx express-generator ```
+2. Run the expressjs-sample project locally, look through the routes/users.js
+	1. ```DEBUG=expressjs:* npm start```
+	2. Access it at http://localhost:3000/ 
+4. Replace you routes/user.js with the file below 
+5. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
+6. Start the express-sample service locally by 
+7. Test with Postman, specifically the POST request
+8. The update the POST endpoint to return result: `New user aded` instead of `New user created`
+9. Restart the service and run POST request again to confirm ti was updated. 
+
+
+### Additional reading 
+1. [Difference between Postman CLI vs Newman Collection Runner](https://learning.postman.com/docs/postman-cli/postman-cli-overview/)
