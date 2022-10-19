@@ -66,7 +66,7 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 2. Run the expressjs-sample project locally, look through the routes/users.js
 	1. ```DEBUG=expressjs:* npm start```
 	2. Access it at http://localhost:3000/ 
-4. Replace you routes/user.js with the file below 
+4. Replace you routes/user.js with the respectful file from https://github.com/dinakazakevich/expressjs-sample  
 5. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
 6. Start the express-sample service locally by 
 7. Test with Postman, specifically the POST request
