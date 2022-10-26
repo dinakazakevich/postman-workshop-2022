@@ -69,7 +69,7 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 6. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
 7. Start the express-sample service locally by 
 8. Test with Postman, specifically the POST request
-9. The update the POST endpoint to return result: `New user aded` instead of `New user created`
+9. Update the POST endpoint to return result: `New user aded` instead of `New user created`
 10. Restart the service and run POST request again to confirm ti was updated. 
 
 
