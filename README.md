@@ -49,15 +49,6 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 - TikTok: https://www.tiktok.com/@remoteeverafter 
 
 
-## ⚙️ Setup
-
-1. Install Postman https://www.postman.com/ 
-2. Sign up for a free Adalo account https://www.adalo.com/?via=dina
-3. Logging into your Adalo account
-4. Follow the link and clone this [sample Adalo app](https://remoteeverafter.adalo.com/applicants) — we will be using its collections
-5. Enable Free Integrations Trial in Adalo Editor: Settings > App Access > Start Trial 
-6. Generate API Key
-
 
 ## ✨ Bonus task: Set up a local API service with Express.js 
 1. Create an express js app https://expressjs.com/en/starter/generator.html
@@ -74,11 +65,23 @@ I'm a Senior QA Analyst at [Adalo](https://www.adalo.com/) and a former mentor a
 	```
 3. Access it at http://localhost:3000/ 
 4. Replace you routes/user.js with the respectful file from https://github.com/dinakazakevich/expressjs-sample  
-5. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
-6. Start the express-sample service locally by 
-7. Test with Postman, specifically the POST request
-8. The update the POST endpoint to return result: `New user aded` instead of `New user created`
-9. Restart the service and run POST request again to confirm ti was updated. 
+5. Create a `data` directory in the root of your project, and copy over my `users.json` from https://github.com/dinakazakevich/expressjs-sample
+6. Look at how API endpoints look like, search for `router.get`, `router.post`, `router.delete`
+7. Start the express-sample service locally by 
+8. Test with Postman, specifically the POST request
+9. The update the POST endpoint to return result: `New user aded` instead of `New user created`
+10. Restart the service and run POST request again to confirm ti was updated. 
+
+
+
+## ⚙️ Setup
+
+1. Install Postman https://www.postman.com/ 
+2. Sign up for a free Adalo account https://www.adalo.com/?via=dina
+3. Logging into your Adalo account
+4. Follow the link and clone this [sample Adalo app](https://remoteeverafter.adalo.com/applicants) — we will be using its collections
+5. Enable Free Integrations Trial in Adalo Editor: Settings > App Access > Start Trial 
+6. Generate API Key
 
 
 ## Creating Postman API requests
